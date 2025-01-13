@@ -3,22 +3,26 @@
 <header>
     <nav class="navbar navbar-light" style="background-color: lightskyblue">
         <div class="container">
-            <a class="navbar-brand" href="index.html">
+            {% url 'blog:index' as index_url_path %}
+            <a class="navbar-brand" href="{{ index_url_path }}">
                 <img src="{% static 'img/logo.png' %}" width="30" height="30" class="d-inline-block align-top" alt="">
                 Блогикум
             </a>
             <ul class="nav  nav-pills">
                 <li class="nav-item">
-                
-                    <a class="nav-link {% if '/' == request.get_full_path %} active {% endif %}" href="{% url 'blog:index' %}"> 
+                    <a class="nav-link {% if index_url_path == request.path %} active {% endif %}" href="{{ index_url_path }}"> 
                         Лента записей 
                     </a>
                 </li>
+
+                {% url 'pages:about' as about_url_path %}
                 <li class="nav-item">
-                    <a class="nav-link" href="about.html"> О проекте </a>
+                    <a class="nav-link {% if about_url_path == request.path %} active {% endif %}" href="{{ about_url_path }}"> О проекте </a>
                 </li>
+
+                {% url 'pages:rules' as rules_url_path %}
                 <li class="nav-item">
-                    <a class="nav-link" href="rules.html"> Наши правила </a>
+                    <a class="nav-link {% if rules_url_path == request.path %} active {% endif %}" href="{{ rules_url_path }}"> Наши правила </a>
                 </li>
             </ul>
         </div>
