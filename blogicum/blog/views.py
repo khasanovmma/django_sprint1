@@ -1,4 +1,5 @@
 from django.shortcuts import render
+from django.http import Http404
 
 
 posts = [
@@ -53,11 +54,15 @@ def index(request):
 
 
 def post_detail(request, pk):
+    posts = [post for post in posts if post["id"] == pk]
+    if posts == []:
+        raise Http404(f"Пост по таким ID:{pk} нет!!!")
+
     template = "blog/detail.html"
     return render(
         request=request,
         template_name=template,
-        context={"post": posts[pk]},
+        context={"post": posts[0]},
     )
 
 
