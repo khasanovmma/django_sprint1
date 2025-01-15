@@ -1,6 +1,6 @@
-{% extends "base.html" %} 
+{% extends "base.html" %}
 
-{% block title %} Лента записей {% endblock %} 
+{% block title %} Лента записей {% endblock %}
 
 {% block content %}
   <h1>Лента записей</h1>
@@ -21,5 +21,5 @@
       <a href="{% url 'blog:post_detail' post.id %}">Читать полный текст</a>
     </article>
     <hr>
-  {% endfor %} 
+  {% endfor %}
 {% endblock %}
