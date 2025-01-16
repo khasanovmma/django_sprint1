@@ -54,16 +54,16 @@ def index(request):
 
 
 def post_detail(request, pk):
-    posts_dict = {post["id"]: post for post in posts}
+    posts_map = {post["id"]: post for post in posts}
 
-    if not posts_dict.get(pk):
+    if not posts_map.get(pk):
         raise Http404(f"Пост с ID:{pk} не найден!")
 
     template = "blog/detail.html"
     return render(
         request=request,
         template_name=template,
-        context={"post": posts_dict[pk]},
+        context={"post": posts_map[pk]},
     )
 
 
